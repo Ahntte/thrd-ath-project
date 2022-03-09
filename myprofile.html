@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자소서</title>
+    <link rel="stylesheet" href="myprofile.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic+Coding&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/495ad56c36.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="jquery-2.1.1.js"></script>
+    <!-- <script src="chart_ex/js/Chart.min.js"></script>
+    <script src="chart_ex/js/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script> -->
+    <script defer src="myprofile.js"></script>
+    <script defer src="button-spec.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <section class="first-section">
+        <!-- 헤더영역 (로고, 버튼) -->
+        <header class="header-box">
+          <h1 class="logo fontSize">DreamCoding</h1>
+          <nav class="main-menu">
+            <ul class="menu-title">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Project</a></li>
+            </ul>
+          </nav>
+        </header>
+        <div class="button-site">
+          <a href="#" class="hamburger-button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </a>
+        </div>
+        <div class="menu-container">
+          <nav class="mobile-menu">
+            <ul class="mobile-menu-group">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Project</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="sub-title">Front-end Developer</div>
+        <div class="main-title">
+          <div class="typing"></div>
+        </div>
+        <footer class="footer">
+          <div class="scroll-icon">
+            <i class="fa-solid fa-angles-down common-style"></i>
+          </div>
+          <div class="social-icon">
+            <i class="fa-brands fa-github common-style"></i>
+            <i class="fa-solid fa-envelope common-style"></i>
+          </div>
+        </footer>
+      </section>
+      <section class="sec-section">
+        <div class="none-box">
+          <!--의미없는 마크업이라 찝찝함 가상요소를 사용해보았지만 진짜 요소가 아니어서 그런지
+        원하는 width값이 제대로 먹히질않음 어쩔수없이.. 이렇게라도함ㅠ-->
+        </div>
+        <div class="sec-title-group">
+          <p class="sec-title-about">About</p>
+          <p class="sec-title-skill">Language</p>
+        </div>
+        <article class="sec-section-detail">
+          <div class="profile">
+            <div class="profile-content-wrap">
+              <div class="profile-img-container">
+                <input
+                  type="file"
+                  name="file-widget"
+                  id="selectFile"
+                  style="display: none"
+                  accept="img/*"
+                  required
+                />
+              </div>
+              <div class="profile-txt">
+                <span>Hi, I'm Tae-hyeon</span>
+                <p>
+                  <ul class="profile-list">
+                    <li>장안대학교 졸업</li>
+                    <li>멀티미디어컨텐츠 전공</li>
+                    <li>그린컴퓨터 아카데미 웹개발 과정 수료</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
+            <div class="skill-bar-graph">
+                 <!-- title: HTML -->
+                 <div class="first-group">
+                <span id="first-title">HTML5</span>
+                  <div class="first-bar margin-top">
+                    <span id="first-count"></span>%
+                  </div>
+                </div>
+                <!-- title: CSS -->
+                <div class="sec-group">
+                <span id="sec-title">CSS3</span>
+                  <div class="sec-bar margin-top">
+                    <span id="sec-count"></span>%
+                  </div>
+                </div>
+                <!-- title: JavaScript -->
+                <div class="third-group">
+                <span  id="third-title">JS(ES5~ES6)</span>
+                  <div class="third-bar margin-top">
+                  <span id="third-count"></span>%
+                  </div>
+                </div>
+            </div> 
+          </div>
+        </article>
+      </section>
+      <section class="third-section">
+        <article class="third-section-detail">컨텐츠3</article>
+      </section>
+      <section class="fourth-section">
+        <article class="fourth-section-detail">컨텐츠4</article>
+      </section>
+    </main>
+  </body>
+</html>
+

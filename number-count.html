@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      let current = 0; // 현재 숫자
+
+      // 콜백 함수를 익명 함수로 일일이 작성하기 귀찮으니 따로 빼주자.
+      // 돔에 숫자를 렌더링하는 함수이다.
+      // 외부에 있는 변수를 건드리므로 좋지는 않지만 어쩔 수 없다.
+      const changeNum = (dom) => {
+        dom.innerText = ++current;
+      };
+
+      // setTimeout 말고 setInterval이 더 간결하다.
+      const SetInterval = (cb, ms) =>
+        setInterval(() => {
+          if (current >= 100) return clearInterval(SetInterval);
+          cb();
+        }, ms);
+
+      const MS = 100; //밀리초
+      const domRoot = document.getElementById("root");
+      domRoot.innerText = 0; // 0으로 초기값 설정.
+
+      // 이 함수를 실행할 때는 current가 1이 되므로 계속해서 1로 고정하게 된다.
+      // 그래서 부득이하게 콜백 함수 안에서 외부 변수를 불러오게 했다.
+      SetInterval(changeNum.bind(null, domRoot), MS);
+    </script>
+  </body>
+</html>

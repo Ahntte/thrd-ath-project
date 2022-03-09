@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bar-graph</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        overflow: hidden;
+      }
+
+      html,
+      body {
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+
+      span {
+        margin-left: 0;
+      }
+      .section {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #section1 {
+        background-color: aliceblue;
+      }
+
+      #section2 {
+        background-color: lightpink;
+      }
+
+      #section3 {
+        background-color: coral;
+      }
+
+      #section4 {
+        background-color: aqua;
+      }
+
+      .first-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .first-bar {
+        display: inline-block;
+        border: none;
+        width: 0px;
+        height: 50px;
+        background-color: tomato;
+      }
+
+      #first-count {
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      #first-title {
+        display: block;
+      }
+
+      .sec-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .sec-bar {
+        display: inline-block;
+        border: none;
+        width: 0px;
+        height: 50px;
+        background-color: yellow;
+      }
+
+      #sec-count {
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      #sec-title {
+        display: block;
+      }
+      .third-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .third-bar {
+        display: inline-block;
+        border: none;
+        width: 0px;
+        height: 50px;
+        background-color: steelblue;
+      }
+
+      #third-count {
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      #third-title {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 막대 그래프 마크업 -->
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+        <title></title>
+      </head>
+      <body>
+        <div class="section" id="section1">
+          <div id="section1_detail"></div>
+        </div>
+        <div class="section" id="section2">
+          <div id="section2_detai2">
+            <!-- title: HTML -->
+            <div class="first-group">
+              <div class="first-bar"></div>
+              <span><span id="first-count"></span>%
+            </div>
+            <span id="first-title">HTML</span>
+            <!-- title: CSS -->
+            <div class="sec-group">
+              <div class="sec-bar"></div>
+              <span id="sec-count"></span>%
+            </div>
+            <span id="sec-title"></span>
+            <div class=""></div>
+            <span>CSS</span>
+            <!-- title: JavaScript -->
+            <div class="third-group">
+              <div class="third-bar"></div>
+              <span id="third-count"></span>%
+            </div>
+            <span id="third-title"></span>
+            <div class=""></div>
+            <span>JS</span><span id="third-count"></span>
+          </div>
+        </div>
+        <div class="section" id="section3"></div>
+        <div class="section" id="section4"></div>
+      </body>
+    </html>
+    <script>
+      /*
+            막대그래프가 동작하는 순서
+
+            1)막대그리기
+            어떻게 막대를 그릴것인가
+            1-1. 막대에 해당하는 박스의 border를 이용
+            1-2. 박스의 height값은 고정, width값에 변화를 주어 색이 배경색이 채워지는 애니메이션구현
+            */
+      var mHtml = $("html");
+      var page = 1;
+
+      mHtml.animate({ scrollTop: 0 }, 10);
+      $(window).on("wheel", function (e) {
+        if (mHtml.is(":animated")) return;
+        if (e.originalEvent.deltaY > 0) {
+          if (page == 4) return;
+          page++;
+        } else if (e.originalEvent.deltaY < 0) {
+          if (page == 1) return;
+          page--;
+        }
+        var posTop = (page - 1) * $(window).height();
+        mHtml.animate({ scrollTop: posTop });
+      });
+
+      // bar animation
+      let firstBar = document.querySelector(".first-bar");
+      let secBar = document.querySelector(".sec-bar");
+      let thirdBar = document.querySelector(".third-bar");
+
+      let spanCount = document.querySelector("#first-count"); // id가 count인 span요소에 출력시킬거라 해당 span요소를 변수에 담음
+      let spanSecCount = document.querySelector("#sec-count"); 
+      let spanThirdCount = document.querySelector("#third-count"); 
+
+      let eHtml = document.querySelector("html");
+      let barAnimation1 = null;
+      let barAnimation2 = null;
+      let barAnimation3 = null;
+
+      let firstResultCnt = 0;
+      let secResultCnt = 0;
+      let thirdResultCnt = 0;
+
+      // 특정 섹션페이지에서만 동작이 되도록 스크롤량이 다음 섹션페이지의 세로값이면 동작이되게
+      document.addEventListener("scroll", () => {
+        clearInterval(barAnimation1);
+        if (eHtml.scrollTop == 937) {
+          barAnimation1 = setInterval(() => {
+            firstBar.animate(
+              [
+                {
+                  width: "500px",
+                  easing: "ease-in",
+                },
+              ],
+              21000
+            );
+          });
+          const firstCntNumber = setInterval(() => {
+            spanCount.innerText = firstResultCnt++;
+            if (firstResultCnt > 100) {
+              firstResultCnt = 100;
+              clearInterval(firstCntNumber);
+            }
+          }, 10);
+          clearInterval(barAnimation2);
+          barAnimation2 = setInterval(() => {
+            secBar.animate(
+              [
+                {
+                  width: "500px",
+                  easing: "ease-in",
+                },
+              ],
+              21000
+            );
+          });
+          const secCntNumber = setInterval(() => {
+            spanSecCount.innerText = secResultCnt++;
+            if (secResultCnt > 100) {
+              secResultCnt = 100;
+              clearInterval(secCntNumber);
+            }
+          }, 10);
+          clearInterval(barAnimation3);
+          barAnimation3 = setInterval(() => {
+            thirdBar.animate(
+              [
+                {
+                  width: "500px",
+                  easing: "ease-in",
+                },
+              ],
+              21000
+            );
+          });
+          const thirdCntNumber = setInterval(() => {
+            spanThirdCount.innerText = thirdResultCnt++;
+            if (thirdResultCnt > 100) {
+              thirdResultCnt = 100;
+              clearInterval(thirdCntNumber);
+            }
+          }, 10);
+        }
+      });
+    </script>
+  </body>
+</html>

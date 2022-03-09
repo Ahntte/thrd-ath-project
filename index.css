@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+nav a {
+  text-decoration: none;
+  color: #000000;
+  margin: 2em;
+}
+nav:first-child {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 1080px;
+}
+nav:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+#horizontal-underline {
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: steelblue;
+  top: 58px;
+  left: 202px;
+  transition: 0.2s;
+}
+.nav-container {
+  width: 100%;
+  height: auto;
+}
